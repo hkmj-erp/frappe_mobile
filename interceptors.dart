@@ -1,11 +1,7 @@
 import 'dart:convert';
-
-// import 'package:devotee_diary/services/frappe/models/models.dart';
-import 'package:devotee_diary/shared/widgets/overlay_notifications.dart';
-import 'package:flutter/foundation.dart';
 import 'package:http_interceptor/http_interceptor.dart';
-
 import 'models/response.dart';
+import 'widgets/overlay_notifications.dart';
 
 class ErrorInterceptor implements InterceptorContract {
   bool popError;

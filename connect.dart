@@ -1,13 +1,13 @@
-import 'package:devotee_diary/services/frappe/interceptors.dart';
-import 'package:devotee_diary/services/frappe/models/response.dart';
 import 'package:http/http.dart' as http;
-import 'models/api.dart';
+import 'interceptors.dart';
+import 'models/credential.dart';
+import 'models/response.dart';
 import 'storage.dart';
 import 'package:http_interceptor/http_interceptor.dart';
 
 class FrappeConnection {
   http.Client client = http.Client();
-  static FrappeApi? connectionApi;
+  static FrappeCredential? connectionApi;
   static String? loggedInUserId;
   static FrappeConnection? _connectionInstance;
 
@@ -18,7 +18,7 @@ class FrappeConnection {
     _connectionInstance ??= FrappeConnection._();
   }
 
-  setupApi({required FrappeApi receivedApi}) async {
+  setupApi({required FrappeCredential receivedApi}) async {
     connectionApi = receivedApi;
     await connect();
   }

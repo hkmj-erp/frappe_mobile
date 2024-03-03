@@ -1,6 +1,6 @@
-import 'package:devotee_diary/services/frappe/formatters/frappe_bool_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import '../formatters/frappe_bool_converter.dart';
 part 'company.g.dart';
 
 @JsonSerializable()

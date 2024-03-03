@@ -1,22 +1,22 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'api.dart';
+part of 'credential.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class FrappeApiAdapter extends TypeAdapter<FrappeApi> {
+class FrappeCredentialAdapter extends TypeAdapter<FrappeCredential> {
   @override
   final int typeId = 0;
 
   @override
-  FrappeApi read(BinaryReader reader) {
+  FrappeCredential read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return FrappeApi(
+    return FrappeCredential(
       key: fields[0] as String,
       secret: fields[1] as String,
       domain: fields[2] as String,
@@ -24,7 +24,7 @@ class FrappeApiAdapter extends TypeAdapter<FrappeApi> {
   }
 
   @override
-  void write(BinaryWriter writer, FrappeApi obj) {
+  void write(BinaryWriter writer, FrappeCredential obj) {
     writer
       ..writeByte(3)
       ..writeByte(0)
@@ -41,7 +41,7 @@ class FrappeApiAdapter extends TypeAdapter<FrappeApi> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is FrappeApiAdapter &&
+      other is FrappeCredentialAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

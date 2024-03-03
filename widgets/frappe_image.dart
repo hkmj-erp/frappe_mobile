@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
-import '../requests/utils.dart';
+import '../utils/server.dart';
 
 class FrappeImage extends StatelessWidget {
   final String imagePath;
