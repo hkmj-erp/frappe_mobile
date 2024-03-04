@@ -9,9 +9,9 @@ part of 'frappeuser.dart';
 FrappeUser _$FrappeUserFromJson(Map<String, dynamic> json) => FrappeUser(
       fullName: json['full_name'] as String,
       email: json['email'] as String,
-    )
-      ..mobileNo = json['mobile_no'] as String?
-      ..profileImagePath = json['user_image'] as String?;
+      profileImagePath: json['user_image'] as String?,
+      mobileNo: json['mobile_no'] as String?,
+    );
 
 Map<String, dynamic> _$FrappeUserToJson(FrappeUser instance) =>
     <String, dynamic>{

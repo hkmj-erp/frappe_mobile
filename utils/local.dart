@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:location/location.dart';
 
@@ -15,7 +16,11 @@ bool validateAadhar(String aadhar) {
   return regex.hasMatch(aadhar);
 }
 
-Future<Map<String, String>?> getCurrentLocation() async {
+Map<String, String> locationMap(LatLng data) {
+  return {"latitude": data.latitude.toString(), "longitude": data.longitude.toString()};
+}
+
+Future<LatLng?> getCurrentLocation() async {
   Location location = Location();
 
   bool serviceEnabled;
@@ -39,10 +44,7 @@ Future<Map<String, String>?> getCurrentLocation() async {
   }
   locationData = await location.getLocation();
 
-  return {
-    'longitude': (locationData.longitude ?? 0.0).toString(),
-    'latitude': (locationData.latitude ?? 0.0).toString()
-  };
+  return LatLng(locationData.latitude ?? 0.0, locationData.longitude ?? 0.0);
 }
 
 String generateRandomString(int len) {
@@ -58,4 +60,10 @@ Future<String> getOcrTexts(String filePath) async {
 
   String text = recognizedText.text;
   return text;
+}
+
+bool validateEmail(String email) {
+  // Simple regular expression for basic email format validation
+  RegExp emailRegex = RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$');
+  return emailRegex.hasMatch(email);
 }

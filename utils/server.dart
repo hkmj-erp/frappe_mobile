@@ -86,13 +86,11 @@ attachImageToDocument(
   }
 }
 
-
-Future<FrappeUser> getUserProfile() async {
+Future<FrappeResponse> getUserProfile() async {
   FrappeConnection frappeConnection = FrappeConnection.instance;
   FrappeResponse resp = await frappeConnection.getRequest(
       path: 'api/resource/User/${FrappeConnection.loggedInUserId}');
-
-  return FrappeUser.fromJson(resp.data);
+  return resp;
 }
 
 Future<List<String>> getUserRoles() async {
@@ -103,11 +101,11 @@ Future<List<String>> getUserRoles() async {
   return resp.data.map<String>((e) => e as String).toList();
 }
 
-updateUserProfile(Map<String, dynamic> updateValues) async {
+Future<FrappeResponse> updateUserProfile(Map<String, dynamic> updateValues) async {
   FrappeConnection frappeConnection = FrappeConnection.instance;
   FrappeResponse resp = await frappeConnection.putRequest(
     path: 'api/resource/User/${FrappeConnection.loggedInUserId}',
     body: updateValues,
   );
-  return FrappeUser.fromJson(resp.data);
+  return resp;
 }

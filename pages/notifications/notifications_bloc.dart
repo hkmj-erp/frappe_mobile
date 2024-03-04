@@ -26,7 +26,8 @@ class NotificationsBloc extends Bloc<Map, Map> {
     FrappeResponse resp =
         await frappeConnection.getRequest(path: "/api/resource/App Notification", queryParameters: {
       'fields': '["*"]',
-      'filters': '[["app","=",$firebaseApp],["user", "=", "${FrappeConnection.loggedInUserId!}"]]',
+      'filters':
+          '[["app","=","$firebaseApp"],["user", "=", "${FrappeConnection.loggedInUserId!}"]]',
       'order_by': 'creation desc',
       'limit_start': '$limitStart',
       'limit_page_length': '$pageLength'

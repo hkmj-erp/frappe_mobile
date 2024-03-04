@@ -1,2 +1,2 @@
-export 'bloc/bloc.dart';
 export 'repository.dart';
+export 'service.dart';

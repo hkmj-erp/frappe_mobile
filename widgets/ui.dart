@@ -4,7 +4,7 @@ import '../extensions/extensions.dart';
 class ReusableTextField extends StatelessWidget {
   final String text;
   final String? initialValue;
-  final IconData icon;
+  final IconData? icon;
   final bool isPasswordType;
   final TextInputType textInputType;
   final bool enabled;
@@ -22,7 +22,7 @@ class ReusableTextField extends StatelessWidget {
       {super.key,
       required this.text,
       this.initialValue,
-      required this.icon,
+      this.icon,
       this.isPasswordType = false,
       this.textInputType = TextInputType.text,
       this.enabled = true,

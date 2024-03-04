@@ -15,7 +15,7 @@ class FrappeUser {
   @JsonKey(name: "user_image")
   String? profileImagePath;
 
-  FrappeUser({required this.fullName, required this.email});
+  FrappeUser({required this.fullName, required this.email, this.profileImagePath, this.mobileNo});
 
   factory FrappeUser.fromJson(Map<String, dynamic> json) => _$FrappeUserFromJson(json);
   Map<String, dynamic> toJson() => _$FrappeUserToJson(this);
