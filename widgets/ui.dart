@@ -59,15 +59,18 @@ class ReusableTextField extends StatelessWidget {
       // cursorColor: const Color.fromARGB(255, 215, 118, 118),
       style: TextStyle(fontSize: fontSize),
       decoration: InputDecoration(
-          prefixIcon: Icon(
-            icon,
-          ),
+          prefixIcon: icon == null
+              ? null
+              : Icon(
+                  icon,
+                ),
           isDense: true,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 2, vertical: 10),
+          contentPadding: EdgeInsets.symmetric(horizontal: icon == null ? 10 : 2, vertical: 10),
           labelText: text,
           labelStyle: context.textTheme.labelLarge!.copyWith(color: context.colorScheme.secondary),
           filled: true,
           floatingLabelBehavior: FloatingLabelBehavior.auto,
+          alignLabelWithHint: true,
           // fillColor: colors.background,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
@@ -82,6 +85,88 @@ class ReusableTextField extends StatelessWidget {
     );
   }
 }
+
+// class ReusableTextField extends StatelessWidget {
+//   final String text;
+//   final String? initialValue;
+//   final IconData? icon;
+//   final bool isPasswordType;
+//   final TextInputType textInputType;
+//   final bool enabled;
+//   final bool readOnly;
+//   final AutovalidateMode autovalidateMode;
+//   final Function()? onTap;
+//   final Function(String?)? onSaved;
+//   final Function(String?)? onChanged;
+//   final String? Function(String?)? validator;
+//   final TextEditingController? controller;
+//   final double fontSize;
+//   final int? maxLines;
+//   final Widget? suffixIcon;
+//   const ReusableTextField(
+//       {super.key,
+//       required this.text,
+//       this.initialValue,
+//       this.icon,
+//       this.isPasswordType = false,
+//       this.textInputType = TextInputType.text,
+//       this.enabled = true,
+//       this.readOnly = false,
+//       this.maxLines,
+//       this.autovalidateMode = AutovalidateMode.disabled,
+//       this.onSaved,
+//       this.onTap,
+//       this.onChanged,
+//       this.validator,
+//       this.controller,
+//       this.fontSize = 20.0,
+//       this.suffixIcon});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return TextFormField(
+//       initialValue: initialValue,
+//       autovalidateMode: autovalidateMode,
+//       maxLines: maxLines,
+//       controller: controller,
+//       obscureText: isPasswordType,
+//       enableSuggestions: !isPasswordType,
+//       autocorrect: !isPasswordType,
+//       onSaved: onSaved ?? (v) {},
+//       onTap: onTap,
+//       enabled: enabled,
+//       readOnly: readOnly,
+//       onChanged: onChanged ?? (v) {},
+//       validator: validator ??
+//           (v) {
+//             return null;
+//           },
+//       // cursorColor: const Color.fromARGB(255, 215, 118, 118),
+//       style: TextStyle(fontSize: fontSize),
+//       decoration: InputDecoration(
+//           prefixIcon: Icon(
+//             icon,
+//           ),
+//           isDense: true,
+//           contentPadding: const EdgeInsets.symmetric(horizontal: 2, vertical: 10),
+//           labelText: text,
+//           labelStyle: context.textTheme.labelLarge!.copyWith(color: context.colorScheme.secondary),
+//           filled: true,
+//           floatingLabelBehavior: FloatingLabelBehavior.auto,
+//           // fillColor: colors.background,
+//           border: OutlineInputBorder(
+//             borderRadius: BorderRadius.circular(10.0),
+//             borderSide:
+//                 BorderSide(color: context.colorScheme.primary, width: 10, style: BorderStyle.solid),
+//           ),
+//           enabledBorder: OutlineInputBorder(
+//               borderSide: BorderSide(width: 1, color: context.colorScheme.secondary),
+//               borderRadius: BorderRadius.circular(5.0)),
+//           suffixIcon: suffixIcon),
+//       keyboardType: textInputType,
+//     );
+//   }
+// }
 
 class ReusableDropDownField extends StatelessWidget {
   final String text;
