@@ -18,6 +18,7 @@ class ReusableTextField extends StatelessWidget {
   final double fontSize;
   final int? maxLines;
   final Widget? suffixIcon;
+  final FocusNode? focusNode;
   const ReusableTextField(
       {super.key,
       required this.text,
@@ -35,12 +36,15 @@ class ReusableTextField extends StatelessWidget {
       this.validator,
       this.controller,
       this.fontSize = 20.0,
-      this.suffixIcon});
+      this.suffixIcon,
+      this.focusNode
+      });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       initialValue: initialValue,
+      focusNode: focusNode,
       autovalidateMode: autovalidateMode,
       maxLines: maxLines,
       controller: controller,
