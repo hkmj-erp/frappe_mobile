@@ -1,8 +1,9 @@
-import 'package:dhananjaya/main.dart';
-import 'package:dhananjaya/routes.dart';
-import 'package:dhananjaya/services/frappe/frappe.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../../main.dart';
+import '../../../../routes.dart';
+import '../../frappe.dart';
 
 class FCMNotificationService {
   FirebaseMessaging? messaging;
@@ -37,7 +38,7 @@ class FCMNotificationService {
   updateDeviceTokenToServer() async {
     String? token = await FirebaseMessaging.instance.getToken();
     if (token != null) {
-      await storeFirebaseAppToken(firebaseAppName,token);
+      await storeFirebaseAppToken(firebaseAppName, token);
     }
   }
 }
