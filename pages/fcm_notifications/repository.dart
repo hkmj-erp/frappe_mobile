@@ -24,8 +24,6 @@ getDeviceInfo() async {
 storeFirebaseAppToken(String firebaseApp, String token) async {
   final deviceInfo = await getDeviceInfo();
 
-  FrappeConnection frappeConnection = FrappeConnection.instance;
-
   var data = {
     'user': FrappeConnection.loggedInUserId!,
     'token': token,
@@ -33,8 +31,16 @@ storeFirebaseAppToken(String firebaseApp, String token) async {
     "device_id": deviceInfo["id"] ?? "",
     "device_name": deviceInfo["name"] ?? ""
   };
-  return await frappeConnection.postRequest(
-      path: "api/resource/Firebase App Token", body: data, popError: false);
+  final resp = await FrappeConnection.instance
+      .getRequest(path: "api/resource/Firebase App Token", queryParameters: {
+    "filters": jsonEncode(data),
+  });
+  List<String> entries = resp.data.map<String>((e) => e["name"] as String).toList();
+  print(entries);
+  if (entries.isEmpty) {
+    await FrappeConnection.instance
+        .postRequest(path: "api/resource/Firebase App Token", body: data, popError: false);
+  }
 }
 
 removeFirebaseTokenFromFrappeServer(String firebaseApp) async {
