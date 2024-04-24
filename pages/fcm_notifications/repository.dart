@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:flutter/foundation.dart';
 
 import '../../connect.dart';
 import '../../models/response.dart';
@@ -8,15 +9,20 @@ import '../../models/response.dart';
 getDeviceInfo() async {
   String? deviceName;
   String? deviceId;
-  var deviceInfo = DeviceInfoPlugin();
-  if (Platform.isIOS) {
-    var iosDeviceInfo = await deviceInfo.iosInfo;
-    deviceName = iosDeviceInfo.name; // unique ID on iOS
-    deviceId = iosDeviceInfo.identifierForVendor; // unique ID on iOS
-  } else if (Platform.isAndroid) {
-    var androidDeviceInfo = await deviceInfo.androidInfo;
-    deviceName = androidDeviceInfo.model; // unique ID on Android
-    deviceId = androidDeviceInfo.id; // unique ID on Android
+  if (kIsWeb) {
+    deviceName = "Web";
+    deviceId = "Chrome";
+  } else {
+    var deviceInfo = DeviceInfoPlugin();
+    if (Platform.isIOS) {
+      var iosDeviceInfo = await deviceInfo.iosInfo;
+      deviceName = iosDeviceInfo.name; // unique ID on iOS
+      deviceId = iosDeviceInfo.identifierForVendor; // unique ID on iOS
+    } else if (Platform.isAndroid) {
+      var androidDeviceInfo = await deviceInfo.androidInfo;
+      deviceName = androidDeviceInfo.model; // unique ID on Android
+      deviceId = androidDeviceInfo.id; // unique ID on Android
+    }
   }
   return {"name": deviceName, "id": deviceId};
 }
